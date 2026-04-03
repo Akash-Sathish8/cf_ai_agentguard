@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AgentGuard — AI Agent Security Monitor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: #0a0a0f;
+        font-family: "Inter", sans-serif;
+      }
+      .font-mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #111118;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1e1e2e;
+        border-radius: 3px;
+      }
+      @keyframes pulse-dot {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+      .pulse-dot {
+        animation: pulse-dot 1.5s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body class="text-gray-200 min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="./App.tsx"></script>
+  </body>
+</html>
