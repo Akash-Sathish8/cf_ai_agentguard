@@ -21,16 +21,15 @@ export default function ChatPanel({ chat, currentTask }: ChatPanelProps) {
   const isEvaluating = currentTask !== null;
 
   return (
-    <div
-      className="flex-1 flex flex-col border-r overflow-hidden"
-      style={{ borderColor: "#1e1e2e" }}
-    >
+    <div className="flex-1 flex flex-col border-r border-gray-200 bg-gray-50 overflow-hidden">
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
         {chat.messages.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center">
-            <span className="text-4xl mb-4">🛡️</span>
-            <p className="text-gray-500 text-sm max-w-xs">
+            <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+              <span className="text-indigo-600 text-xl">&#x1f6e1;</span>
+            </div>
+            <p className="text-gray-400 text-sm max-w-xs">
               Define security policies in the sidebar, then give the agent a
               task to evaluate.
             </p>
@@ -42,14 +41,11 @@ export default function ChatPanel({ chat, currentTask }: ChatPanelProps) {
               className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
             >
               <div
-                className="max-w-md px-4 py-2.5 rounded-lg text-sm whitespace-pre-wrap"
-                style={{
-                  background:
-                    msg.role === "user"
-                      ? "rgba(59, 130, 246, 0.15)"
-                      : "#111118",
-                  color: msg.role === "user" ? "#93c5fd" : "#d1d5db",
-                }}
+                className={`max-w-md px-4 py-2.5 rounded-xl text-sm whitespace-pre-wrap shadow-sm ${
+                  msg.role === "user"
+                    ? "bg-indigo-600 text-white"
+                    : "bg-white text-gray-700 border border-gray-200"
+                }`}
               >
                 {msg.content}
               </div>
@@ -61,21 +57,15 @@ export default function ChatPanel({ chat, currentTask }: ChatPanelProps) {
 
       {/* Evaluating indicator */}
       {isEvaluating && (
-        <div
-          className="px-6 py-2 text-xs flex items-center gap-2"
-          style={{ color: "#3b82f6" }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-blue-500 pulse-dot" />
+        <div className="px-6 py-2 text-xs flex items-center gap-2 text-indigo-600">
+          <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 pulse-dot" />
           Evaluating...
         </div>
       )}
 
       {/* Input */}
-      <div className="px-6 py-4 border-t" style={{ borderColor: "#1e1e2e" }}>
-        <form
-          onSubmit={chat.handleSubmit}
-          className="flex gap-3"
-        >
+      <div className="px-6 py-4 bg-white border-t border-gray-200">
+        <form onSubmit={chat.handleSubmit} className="flex gap-3">
           <input
             type="text"
             value={chat.input}
@@ -86,17 +76,12 @@ export default function ChatPanel({ chat, currentTask }: ChatPanelProps) {
                 ? "Evaluation in progress..."
                 : "Give the agent a task..."
             }
-            className="flex-1 px-4 py-2.5 rounded-lg text-sm text-white placeholder-gray-600 outline-none focus:ring-1 disabled:opacity-50"
-            style={{
-              background: "#111118",
-              border: "1px solid #1e1e2e",
-            }}
+            className="flex-1 px-4 py-2.5 rounded-lg text-sm text-gray-900 placeholder-gray-400 outline-none border border-gray-300 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 disabled:opacity-50 disabled:bg-gray-50"
           />
           <button
             type="submit"
             disabled={isEvaluating || !chat.input.trim()}
-            className="px-5 py-2.5 rounded-lg text-sm font-medium text-white disabled:opacity-40 hover:opacity-90"
-            style={{ background: "#3b82f6" }}
+            className="px-5 py-2.5 rounded-lg text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 disabled:hover:bg-indigo-600 transition-colors"
           >
             Run
           </button>
