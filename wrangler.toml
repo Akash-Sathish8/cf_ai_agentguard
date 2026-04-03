@@ -13,7 +13,7 @@ bindings = [
 
 [[migrations]]
 tag = "v1"
-new_classes = ["PolicyGuardAgent"]
+new_sqlite_classes = ["PolicyGuardAgent"]
 
 [assets]
 directory = "./src/frontend"
